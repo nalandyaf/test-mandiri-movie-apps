@@ -1,5 +1,6 @@
 package com.test.movie.presentation.screen
 
+import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -23,15 +24,15 @@ class MainActivity : AppCompatActivity() {
         val binding: ActivityMainBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         val navController = navHostFragment.navController
 
         updateThemeAndStatusBarOnDestinationChange(binding, navController)
     }
 
     private fun updateThemeAndStatusBarOnDestinationChange(
-        binding: ActivityMainBinding,
-        navController: NavController
+        binding: ActivityMainBinding, navController: NavController
     ) {
         with(WindowInsetsControllerCompat(window, window.decorView)) {
             navController.addOnDestinationChangedListener { _, destination, bundle ->
@@ -43,34 +44,16 @@ class MainActivity : AppCompatActivity() {
 
                         when (Build.VERSION.SDK_INT) {
                             21, 22 -> Color.BLACK
-                            else -> ContextCompat.getColor(this@MainActivity, R.color.day_night_inverse)
+                            else -> ContextCompat.getColor(
+                                this@MainActivity, R.color.day_night_inverse
+                            )
                         }
                     }
 
                     else -> {
                         val backgroundColor = bundle?.getInt(Constants.BACKGROUND_COLOR) ?: 0
                         val isDarkBackground = backgroundColor.isDarkColor()
-
                         when (destination.id) {
-//                            R.id.fullscreenImageFragment -> {
-//                                WindowCompat.setDecorFitsSystemWindows(window, true)
-//                                Color.BLACK
-//                            }
-//
-//                            R.id.seeAllFragment -> {
-//                                WindowCompat.setDecorFitsSystemWindows(window, true)
-//
-//                                if (backgroundColor != 0) {
-//                                    setTheme(if (isDarkBackground) R.style.DetailDarkTheme else R.style.DetailLightTheme)
-//                                    isAppearanceLightStatusBars = !isDarkBackground
-//                                    backgroundColor
-//                                } else {
-//                                    setTheme(R.style.Theme_MovieApp)
-//                                    isAppearanceLightStatusBars = true
-//                                    if (Build.VERSION.SDK_INT in 21..22) Color.BLACK
-//                                    else ContextCompat.getColor(this@MainActivity, R.color.day_night_inverse)
-//                                }
-//                            }
                             else -> {
                                 window.statusBarColor = backgroundColor
                                 WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -80,6 +63,10 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
                     }
+                }
+                requestedOrientation = when (destination.id) {
+                    R.id.youtubeFragment -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+                    else -> ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT
                 }
             }
         }

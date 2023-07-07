@@ -27,6 +27,21 @@
     <action
         android:id="@+id/action_global_movieDetailsFragment"
         app:destination="@id/movieDetailsFragment" />
+    <fragment
+        android:id="@+id/youtubeFragment"
+        tools:layout="@layout/fragment_youtube_player"
+        android:name="com.test.movie.presentation.screen.youtube.YoutubeFragment"
+        android:label="YoutubeFragment" >
+
+        <argument
+            android:name="youtubeId"
+            app:argType="string"/>
+
+    </fragment>
+
+    <action
+        android:id="@+id/action_global_youtubeFragment"
+        app:destination="@id/youtubeFragment" />
 
 
 </navigation>

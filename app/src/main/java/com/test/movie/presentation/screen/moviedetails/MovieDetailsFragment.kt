@@ -3,6 +3,7 @@ package com.test.movie.presentation.screen.moviedetails
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.test.movie.R
 import com.test.movie.databinding.FragmentMovieDetailsBinding
 import com.test.movie.presentation.adapter.ImageAdapter
@@ -10,6 +11,7 @@ import com.test.movie.presentation.adapter.MovieAdapter
 import com.test.movie.presentation.adapter.PersonAdapter
 import com.test.movie.presentation.adapter.VideoAdapter
 import com.test.movie.presentation.base.BaseFragment
+import com.test.movie.presentation.screen.youtube.YoutubeFragmentDirections
 import com.test.movie.util.Type
 import com.test.movie.util.setGenreChips
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +22,9 @@ class MovieDetailsFragment :
 
     override val viewModel: MovieDetailViewModel by viewModels()
 
-    val adapterVideos = VideoAdapter {}
+    val adapterVideos = VideoAdapter {
+        findNavController().navigate(YoutubeFragmentDirections.actionGlobalYoutubeFragment(it))
+    }
     val adapterCast = PersonAdapter(isCast = true)
     val adapterImages = ImageAdapter()
     val adapterRecommendations = MovieAdapter()

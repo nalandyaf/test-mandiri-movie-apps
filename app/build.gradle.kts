@@ -92,6 +92,7 @@ dependencies {
     //Custom Views
     implementation (libs.photo.view)
     implementation (libs.expandable)
+    implementation (libs.youtube.player)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

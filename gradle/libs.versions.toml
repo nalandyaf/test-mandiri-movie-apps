@@ -1,5 +1,6 @@
 [versions]
 agp = "8.0.2"
+core = "12.0.0"
 expandable = "2.9.2"
 glide = "4.15.1"
 glide-transformations = "4.3.0"
@@ -26,6 +27,7 @@ retrofit = "2.9.0"
 [libraries]
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle-runtime-ktx" }
 androidx-palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "palette-ktx" }
+youtube-player = { module = "com.pierfrancescosoffritti.androidyoutubeplayer:core", version.ref = "core" }
 glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "glide" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 expandable = { module = "com.github.cachapa:ExpandableLayout", version.ref = "expandable" }
