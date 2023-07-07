@@ -84,7 +84,6 @@ abstract class BaseFragment<B : ViewDataBinding>(@LayoutRes private val layoutId
         val snackbar = view?.let { Snackbar.make(it, message, length) }
 
         if (action != null) snackbar?.setAction(actionText) { action() }
-        if (anchor) snackbar?.setAnchorView(R.id.bottom_nav_bar)
 
         this.snackbar = snackbar
         this.snackbar?.show()
