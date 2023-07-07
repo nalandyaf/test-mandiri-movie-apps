@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <data>
+        <variable
+            name="fragment"
+            type="com.test.movie.presentation.screen.search.SearchFragment" />
+
+        <variable
+            name="viewModel"
+            type="com.test.movie.presentation.screen.search.SearchViewModel" />
+    </data>
+
+</layout>
