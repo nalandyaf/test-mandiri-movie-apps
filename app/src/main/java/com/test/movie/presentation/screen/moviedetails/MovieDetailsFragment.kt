@@ -8,6 +8,7 @@ import com.test.movie.R
 import com.test.movie.databinding.FragmentMovieDetailsBinding
 import com.test.movie.presentation.adapter.ImageAdapter
 import com.test.movie.presentation.adapter.MovieAdapter
+import com.test.movie.presentation.adapter.MovieReviewAdapter
 import com.test.movie.presentation.adapter.PersonAdapter
 import com.test.movie.presentation.adapter.VideoAdapter
 import com.test.movie.presentation.base.BaseFragment
@@ -26,6 +27,7 @@ class MovieDetailsFragment :
         findNavController().navigate(YoutubeFragmentDirections.actionGlobalYoutubeFragment(it))
     }
     val adapterCast = PersonAdapter(isCast = true)
+    val adapterReviews = MovieReviewAdapter()
     val adapterImages = ImageAdapter()
     val adapterRecommendations = MovieAdapter()
 
@@ -33,7 +35,11 @@ class MovieDetailsFragment :
         super.onViewCreated(view, savedInstanceState)
 
         manageRecyclerViewAdapterLifecycle(
-            binding.rvVideos, binding.rvCast, binding.rvImages, binding.rvRecommendations
+            binding.rvVideos,
+            binding.rvCast,
+            binding.rvImages,
+            binding.rvRecommendations,
+            binding.rvReviews
         )
 
         viewModel.initRequest(detailId)
@@ -65,6 +71,8 @@ class MovieDetailsFragment :
     }
 
     private suspend fun collectMovieReviews() {
-        viewModel.movieReviews.collect { movieReviews -> }
+        viewModel.movieReviews.collect { movieReviews ->
+            adapterReviews.submitList(movieReviews.results)
+        }
     }
 }

@@ -243,6 +243,7 @@ fun RecyclerView.setFixedSize(hasFixedSize: Boolean) {
     "centerCrop",
     "fitTop",
     "isThumbnail",
+    "circleCrop",
     "errorImage",
     requireAll = false
 )
@@ -252,6 +253,7 @@ fun ImageView.loadImage(
     centerCrop: Boolean?,
     fitTop: Boolean,
     isThumbnail: Boolean,
+    circleCrop: Boolean?,
     errorImage: Drawable?
 ) {
     val imageUrl =
@@ -266,6 +268,7 @@ fun ImageView.loadImage(
             ).dontAnimate()
 
     if (centerCrop == true) glide.centerCrop()
+    if (circleCrop == true) glide.circleCrop()
     if (fitTop) glide.apply(
         RequestOptions.bitmapTransform(
             CropTransformation(

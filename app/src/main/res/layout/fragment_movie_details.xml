@@ -428,6 +428,31 @@
                         isVisible="@{viewModel.details.recommendations.totalResults != 0}"
                         android:adapter="@{fragment.adapterRecommendations}" />
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        style="@style/TitleParent"
+                        isVisible="@{viewModel.movieReviews.totalResults != 0}">
+
+                        <TextView
+                            android:id="@+id/reviews"
+                            style="@style/Title"
+                            android:text="@string/detail_title_movie_review" />
+
+                        <TextView
+                            style="@style/ListItemCount"
+                            android:text="@{@string/item_count(viewModel.movieReviews.totalResults)}"
+                            app:layout_constraintStart_toEndOf="@id/reviews" />
+
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvReviews"
+                        style="@style/RecyclerView"
+                        android:orientation="vertical"
+                        isVisible="@{viewModel.movieReviews.totalResults != 0}"
+                        android:adapter="@{fragment.adapterReviews}" />
+
+
                     <TextView
                         style="@style/TitleWithoutSeeAll"
                         isVisible="@{viewModel.details.externalIds.imdbId != null || viewModel.details.externalIds.facebookId != null || viewModel.details.externalIds.instagramId != null || viewModel.details.externalIds.twitterId != null || !viewModel.details.homepage.empty}"

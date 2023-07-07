@@ -45,6 +45,7 @@
     <string name="detail_title_details">Details</string>
     <string name="detail_title_recommended_movies">Recommended Movies</string>
     <string name="detail_title_networks">Networks</string>
+    <string name="detail_title_movie_review">Reviews</string>
 
     <string name="detail_original_title">Original Title</string>
     <string name="detail_release_date">Release Date</string>

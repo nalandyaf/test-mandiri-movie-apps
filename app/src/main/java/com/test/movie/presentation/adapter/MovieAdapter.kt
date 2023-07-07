@@ -10,9 +10,7 @@ import com.test.movie.domain.model.Movie
 
 class MovieAdapter(
     private val isGrid: Boolean = false,
-    private val isCredits: Boolean = false,
-    private val isTrending: Boolean = false,
-    private val onTrendingFabClick: ((Int) -> Unit)? = null
+    private val isCredits: Boolean = false
 ) : ListAdapter<Movie, RecyclerView.ViewHolder>(DiffCallback) {
     inner class HorizontalViewHolder private constructor(val view: ItemMovieBinding) :
         RecyclerView.ViewHolder(view.root) {
