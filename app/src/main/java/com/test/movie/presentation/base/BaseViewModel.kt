@@ -20,7 +20,10 @@ abstract class BaseViewModel : ViewModel() {
     val uiState get() = _uiState.asStateFlow()
 
     protected fun setUiState() {
-        _uiState.value = if (areResponsesSuccessful.contains(false)) UiState.errorState(isInitial, errorText) else UiState.successState()
+        _uiState.value = if (areResponsesSuccessful.contains(false)) UiState.errorState(
+            isInitial,
+            errorText
+        ) else UiState.successState()
         areResponsesSuccessful.clear()
     }
 

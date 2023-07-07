@@ -3,7 +3,6 @@ package com.test.movie.data.remote.api
 import com.test.movie.data.remote.dto.MovieDetailDTO
 import com.test.movie.data.remote.dto.MovieListDTO
 import com.test.movie.data.remote.dto.MovieReviewListDTO
-import com.test.movie.data.remote.dto.VideoListDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -14,14 +13,6 @@ interface MovieApi {
     suspend fun getMovieList(
         @Path("list_id") listId: String, @Query("page") page: Int, @Query("region") region: String?
     ): MovieListDTO
-
-    @GET("trending/movie/week")
-    suspend fun getTrendingMovies(): MovieListDTO
-
-    @GET("movie/{movie_id}/videos")
-    suspend fun getTrendingMovieTrailers(
-        @Path("movie_id") movieId: Int
-    ): VideoListDTO
 
     @GET("discover/movie")
     suspend fun getMoviesByGenre(

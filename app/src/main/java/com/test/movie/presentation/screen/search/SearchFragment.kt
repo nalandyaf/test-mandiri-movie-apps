@@ -23,7 +23,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         super.onViewCreated(view, savedInstanceState)
 
         manageRecyclerViewAdapterLifecycle(
-            binding.rvGenres,binding.rvMovies
+            binding.rvGenres, binding.rvMovies
         )
 
         setupSearchView()

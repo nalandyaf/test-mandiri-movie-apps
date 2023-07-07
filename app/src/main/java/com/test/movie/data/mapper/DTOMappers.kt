@@ -174,6 +174,7 @@ fun ExternalDTO.toExternal(): External = External(
 fun MovieReviewListDTO.toMovieReviewList(): MovieReviewList = MovieReviewList(
     results = movieReviewDTOS.map { it.toMovieReview() }, totalResults = totalResults
 )
+
 fun MovieReviewDTO.toMovieReview(): MovieReview = MovieReview(
     authorName = author,
     content = content,

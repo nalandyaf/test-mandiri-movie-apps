@@ -63,11 +63,13 @@ fun RecyclerView.interceptTouch() {
 }
 
 fun Int.isDarkColor(): Boolean {
-    val darkness = 1 - (0.299 * Color.red(this) + 0.587 * Color.green(this) + 0.114 * Color.blue(this)) / 255
+    val darkness =
+        1 - (0.299 * Color.red(this) + 0.587 * Color.green(this) + 0.114 * Color.blue(this)) / 255
     return darkness >= 0.5
 }
 
-fun Int.setTintColor(reverse: Boolean = false): Int = if (this.isDarkColor() xor reverse) Color.WHITE else Color.BLACK
+fun Int.setTintColor(reverse: Boolean = false): Int =
+    if (this.isDarkColor() xor reverse) Color.WHITE else Color.BLACK
 
 fun Int?.formatTime(context: Context): String? = this?.let {
     when {
@@ -75,7 +77,13 @@ fun Int?.formatTime(context: Context): String? = this?.let {
         it >= 60 -> {
             val hours = it / 60
             val minutes = it % 60
-            "${hours}${context.getString(R.string.hour_short)} ${if (minutes == 0) "" else "$minutes${context.getString(R.string.minute_short)}"}"
+            "${hours}${context.getString(R.string.hour_short)} ${
+                if (minutes == 0) "" else "$minutes${
+                    context.getString(
+                        R.string.minute_short
+                    )
+                }"
+            }"
         }
 
         else -> "${it}${context.getString(R.string.minute_short)}"

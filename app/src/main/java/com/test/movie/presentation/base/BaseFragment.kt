@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
-import com.test.movie.R
 import com.test.movie.util.Constants
 import com.test.movie.util.LifecycleRecyclerView
 import com.test.movie.util.LifecycleViewPager
@@ -25,7 +24,8 @@ import kotlinx.coroutines.launch
 import kotlin.reflect.KSuspendFunction0
 
 
-abstract class BaseFragment<B : ViewDataBinding>(@LayoutRes private val layoutId: Int) : Fragment() {
+abstract class BaseFragment<B : ViewDataBinding>(@LayoutRes private val layoutId: Int) :
+    Fragment() {
 
     private var _binding: B? = null
     protected val binding get() = _binding!!
@@ -40,7 +40,11 @@ abstract class BaseFragment<B : ViewDataBinding>(@LayoutRes private val layoutId
 
     val backgroundColor by lazy { arguments?.getInt(Constants.BACKGROUND_COLOR)!! }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         _binding = DataBindingUtil.inflate<B>(inflater, layoutId, container, false).apply {
             lifecycleOwner = viewLifecycleOwner
             setVariable(BR.fragment, this@BaseFragment)
