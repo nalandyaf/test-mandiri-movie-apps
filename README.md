@@ -16,11 +16,10 @@ A movie app that implements <b>MVVM</b> design pattern by following the <b>clean
 - Safe API call with [Retrofit](https://github.com/square/retrofit) & [Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) with the help of `Sealed Class`
 - Caching API response with [`OkHttpClient`](https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/)
 - Observing data changes and updating the UI state with [`StateFlow`](https://kotlinlang.org/api/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-state-flow/)
-- Lifecycle-aware `RecyclerView` & `ViewPager2` adapters with util classes that implements [`DefaultLifecycleObserver`](https://developer.android.com/reference/androidx/lifecycle/DefaultLifecycleObserver)
+- Lifecycle-aware `RecyclerView` adapters with util classes that implements [`DefaultLifecycleObserver`](https://developer.android.com/reference/androidx/lifecycle/DefaultLifecycleObserver)
 - Easing the binding process and handling common operations with base classes (`BaseActivity`, `BaseFragment`, and `BaseViewModel`)
 - Handling common view logic with [`BindingAdapter`](https://developer.android.com/topic/libraries/data-binding/binding-adapters)
 - Infinite scrolling with the help of `RecyclerView.OnScrollListener` (no paging library used)
-- ViewPager2 auto sliding functionality with the help of `Handler` & `Runnable`
 - Detecting and fixing leaks with [LeakCanary](https://github.com/square/leakcanary)
 
 ## 🔑 Prerequisite
@@ -47,7 +46,7 @@ Consists of four packages:
 Presentation layer is responsible for displaying application data on the screen. It contains  UI elements that render the data on the screen and ViewModel classes that store and manage data in a lifecycle-conscious way.
 
 Consists of two packages:
-- `adapter` contains RecyclerView & ViewPager2 adapter classes
+- `adapter` contains RecyclerView adapter classes
 - `ui` contains Activities & Fragments with their corresponding ViewModel classes
 
 ### 🔸 Domain
