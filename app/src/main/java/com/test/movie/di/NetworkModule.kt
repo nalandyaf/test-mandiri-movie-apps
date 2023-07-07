@@ -7,6 +7,7 @@ import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.os.Build
 import com.test.movie.BuildConfig
+import com.test.movie.data.remote.api.MovieApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -95,5 +96,9 @@ object NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder().client(okHttpClient).baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create()).build()
+
+    @Singleton
+    @Provides
+    fun provideMovieApi(retrofit: Retrofit): MovieApi = retrofit.create(MovieApi::class.java)
 
 }
