@@ -2,9 +2,11 @@ package com.test.movie.data.repository
 
 import com.test.movie.data.mapper.toMovieDetail
 import com.test.movie.data.mapper.toMovieList
+import com.test.movie.data.mapper.toMovieReviewList
 import com.test.movie.data.remote.api.MovieApi
 import com.test.movie.domain.model.MovieDetail
 import com.test.movie.domain.model.MovieList
+import com.test.movie.domain.model.MovieReviewList
 import com.test.movie.domain.repository.MovieRepository
 import com.test.movie.util.Resource
 import com.test.movie.util.SafeApiCall
@@ -34,6 +36,11 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getMovieDetails(movieId: Int): Resource<MovieDetail> =
         safeApiCall.execute {
             movieApi.getMovieDetails(movieId = movieId).toMovieDetail()
+        }
+
+    override suspend fun getMovieReviewList(movieId: Int): Resource<MovieReviewList> =
+        safeApiCall.execute {
+            movieApi.getMovieReviews(movieId).toMovieReviewList()
         }
 
 }

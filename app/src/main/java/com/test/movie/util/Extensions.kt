@@ -6,7 +6,6 @@ import android.os.Parcelable
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -21,7 +20,7 @@ import kotlin.math.roundToInt
 
 fun ChipGroup.setGenreChips(
     genres: List<Genre>,
-    detailType: Detail,
+    typeType: Type,
     backgroundColor: Int
 ) {
     genres.forEach { genre ->
@@ -35,7 +34,7 @@ fun ChipGroup.setGenreChips(
                 setOnClickListener {
                     val bundle = bundleOf(
                         Constants.CONTENT_TYPE to Content.GENRE as Parcelable,
-                        Constants.DETAIL_TYPE to detailType as Parcelable,
+                        Constants.DETAIL_TYPE to typeType as Parcelable,
                         Constants.GENRE_ID to genre.id,
                         Constants.TITLE to genre.name,
                         Constants.BACKGROUND_COLOR to backgroundColor

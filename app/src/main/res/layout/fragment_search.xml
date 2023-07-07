@@ -6,7 +6,7 @@
 
         <import type="com.test.movie.util.Content" />
 
-        <import type="com.test.movie.util.Detail" />
+        <import type="com.test.movie.util.Type" />
 
         <variable
             name="fragment"

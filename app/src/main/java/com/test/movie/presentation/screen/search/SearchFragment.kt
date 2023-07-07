@@ -9,7 +9,7 @@ import com.test.movie.databinding.FragmentSearchBinding
 import com.test.movie.presentation.adapter.GenreAdapter
 import com.test.movie.presentation.adapter.MovieAdapter
 import com.test.movie.presentation.base.BaseFragment
-import com.test.movie.util.Detail
+import com.test.movie.util.Type
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,7 +40,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         val movieGenreIds = resources.getIntArray(R.array.movie_genre_ids).toTypedArray()
         val movieGenreNames = resources.getStringArray(R.array.movie_genre_names)
 
-        binding.rvGenres.adapter = GenreAdapter(Detail.MOVIE).apply {
+        binding.rvGenres.adapter = GenreAdapter(Type.MOVIE).apply {
             submitList(movieGenreIds.zip(movieGenreNames))
         }
     }

@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.test.movie.R
 import com.test.movie.databinding.ItemGenreBinding
 import com.test.movie.domain.model.Genre
-import com.test.movie.util.Detail
+import com.test.movie.util.Type
 
 class GenreAdapter(
-    private val detailType: Detail
+    private val typeType: Type
 ) : ListAdapter<Pair<Int, String>, GenreAdapter.ViewHolder>(DiffCallback) {
     inner class ViewHolder(val view: ItemGenreBinding) : RecyclerView.ViewHolder(view.root)
 
@@ -26,7 +26,7 @@ class GenreAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.view.apply {
-            detailType = this@GenreAdapter.detailType
+            detailType = this@GenreAdapter.typeType
             genre = Genre(id = getItem(position).first, name = getItem(position).second)
         }
     }

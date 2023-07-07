@@ -2,6 +2,7 @@ package com.test.movie.data.remote.api
 
 import com.test.movie.data.remote.dto.MovieDetailDTO
 import com.test.movie.data.remote.dto.MovieListDTO
+import com.test.movie.data.remote.dto.MovieReviewListDTO
 import com.test.movie.data.remote.dto.VideoListDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -36,4 +37,7 @@ interface MovieApi {
     suspend fun getMovieDetails(
         @Path("movie_id") movieId: Int
     ): MovieDetailDTO
+
+    @GET("movie/{movie_id}/reviews")
+    suspend fun getMovieReviews(@Path("movie_id") movieId: Int): MovieReviewListDTO
 }

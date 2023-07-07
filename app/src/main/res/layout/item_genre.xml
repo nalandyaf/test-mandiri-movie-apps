@@ -13,7 +13,7 @@
 
         <variable
             name="detailType"
-            type="com.test.movie.util.Detail" />
+            type="com.test.movie.util.Type" />
 
     </data>
 

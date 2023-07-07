@@ -9,7 +9,7 @@
 
         <import type="com.test.movie.util.ImageQuality" />
 
-        <import type="com.test.movie.util.Detail" />
+        <import type="com.test.movie.util.Type" />
 
         <variable
             name="isGrid"

@@ -12,6 +12,8 @@ import com.test.movie.data.remote.dto.MovieCreditsDTO
 import com.test.movie.data.remote.dto.MovieDTO
 import com.test.movie.data.remote.dto.MovieDetailDTO
 import com.test.movie.data.remote.dto.MovieListDTO
+import com.test.movie.data.remote.dto.MovieReviewDTO
+import com.test.movie.data.remote.dto.MovieReviewListDTO
 import com.test.movie.data.remote.dto.PersonDTO
 import com.test.movie.data.remote.dto.PersonDetailDTO
 import com.test.movie.data.remote.dto.PersonListDTO
@@ -31,6 +33,8 @@ import com.test.movie.domain.model.Movie
 import com.test.movie.domain.model.MovieCredits
 import com.test.movie.domain.model.MovieDetail
 import com.test.movie.domain.model.MovieList
+import com.test.movie.domain.model.MovieReview
+import com.test.movie.domain.model.MovieReviewList
 import com.test.movie.domain.model.Person
 import com.test.movie.domain.model.PersonDetail
 import com.test.movie.domain.model.PersonList
@@ -165,4 +169,15 @@ fun TvCreditsDTO.toTvCredits(): TvCredits =
 
 fun ExternalDTO.toExternal(): External = External(
     facebookId = facebookId, imdbId = imdbId, instagramId = instagramId, twitterId = twitterId
+)
+
+fun MovieReviewListDTO.toMovieReviewList(): MovieReviewList = MovieReviewList(
+    results = movieReviewDTOS.map { it.toMovieReview() }, totalResults = totalResults
+)
+fun MovieReviewDTO.toMovieReview(): MovieReview = MovieReview(
+    authorName = author,
+    content = content,
+    id = id,
+    createdAt = createdAt,
+    avatarUrl = authorDetailsDTO.avatarPath
 )

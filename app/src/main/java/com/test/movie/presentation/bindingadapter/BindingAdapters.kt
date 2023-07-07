@@ -41,7 +41,7 @@ import com.test.movie.R
 import com.test.movie.domain.model.*
 import com.test.movie.util.Constants
 import com.test.movie.util.Content
-import com.test.movie.util.Detail
+import com.test.movie.util.Type
 import com.test.movie.util.ExternalPlatform
 import com.test.movie.util.ImageQuality
 import com.test.movie.util.InfiniteScrollListener
@@ -74,7 +74,7 @@ fun View.setHeight(height: Float) {
     requireAll = false
 )
 fun View.setDetailsNavigation(
-    detailType: Detail,
+    typeType: Type,
     id: Int,
     imageUrl: String?,
     seasonNumber: Int?,
@@ -138,7 +138,7 @@ fun View.setDetailsNavigation(
 )
 fun View.setSeeAllNavigation(
     contentType: Content,
-    detailType: Detail?,
+    typeType: Type?,
     genreId: Int?,
     stringId: String?,
     title: String,
@@ -155,7 +155,7 @@ fun View.setSeeAllNavigation(
     setOnClickListener {
         val bundle = bundleOf(
             Constants.CONTENT_TYPE to contentType as Parcelable,
-            Constants.DETAIL_TYPE to detailType as Parcelable?,
+            Constants.DETAIL_TYPE to typeType as Parcelable?,
             Constants.GENRE_ID to (genreId ?: 0),
             Constants.LIST_ID to stringId,
             Constants.TITLE to title,

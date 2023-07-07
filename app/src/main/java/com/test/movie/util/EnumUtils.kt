@@ -46,8 +46,9 @@ enum class Content : Parcelable {
 }
 
 @Parcelize
-enum class Detail : Parcelable {
+enum class Type : Parcelable {
     MOVIE,
+    REVIEW,
     TV,
     TV_SEASON,
     TV_EPISODE,
