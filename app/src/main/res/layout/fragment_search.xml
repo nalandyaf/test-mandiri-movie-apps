@@ -100,61 +100,49 @@
 
             </LinearLayout>
 
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nestedScrollView"
+            <LinearLayout
                 isVisible="@{viewModel.uiState.success &amp;&amp; !viewModel.query.empty}"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    style="@style/TitleParent"
+                    android:layout_marginTop="0dp">
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        style="@style/TitleParent"
-                        android:layout_marginTop="0dp">
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/TitleDayNight"
+                        android:text="@string/title_movies" />
 
-                        <TextView
-                            android:id="@+id/textView2"
-                            style="@style/TitleDayNight"
-                            android:text="@string/title_movies" />
+                    <TextView
+                        style="@style/ListItemCount"
+                        android:text="@{@string/item_count(viewModel.movieTotalResult)}"
+                        app:layout_constraintStart_toEndOf="@id/textView2" />
 
-                        <TextView
-                            style="@style/ListItemCount"
-                            android:text="@{@string/item_count(viewModel.movieTotalResult)}"
-                            app:layout_constraintStart_toEndOf="@id/textView2" />
+                    <TextView
+                        style="@style/SeeAll"
+                        contentType="@{Content.SEARCH}"
+                        isVisible="@{viewModel.movieTotalResult > 3}"
+                        seeAllDetailType="@{Detail.MOVIE}"
+                        stringId="@{viewModel.query}"
+                        title="@{@string/title_see_all_search(viewModel.query, viewModel.movieTotalResult)}" />
 
-                        <TextView
-                            style="@style/SeeAll"
-                            contentType="@{Content.SEARCH}"
-                            isVisible="@{viewModel.movieTotalResult > 3}"
-                            seeAllDetailType="@{Detail.MOVIE}"
-                            stringId="@{viewModel.query}"
-                            title="@{@string/title_see_all_search(viewModel.query, viewModel.movieTotalResult)}" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvMovies"
+                    style="@style/RecyclerView"
+                    isGrid="@{true}"
+                    loadMore="@{viewModel::onLoadMore}"
+                    shouldLoadMore="@{true}"
+                    android:adapter="@{fragment.adapterMovies}"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="2" />
 
-<!--                    <androidx.recyclerview.widget.RecyclerView-->
-<!--                        android:id="@+id/rvMovies"-->
-<!--                        isGrid="@{true}"-->
-<!--                        loadMore="@{viewModel::onLoadMore}"-->
-<!--                        shouldLoadMore="@{true}"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginTop="@dimen/top_margin_small"-->
-<!--                        android:layout_marginBottom="@dimen/bottom_margin_large"-->
-<!--                        android:adapter="@{fragment.adapterMovies}"-->
-<!--                        android:paddingStart="@dimen/start_margin"-->
-<!--                        android:paddingEnd="@dimen/end_margin_small" />-->
-
-                </LinearLayout>
-
-            </androidx.core.widget.NestedScrollView>
-
+            </LinearLayout>
         </FrameLayout>
-
-
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

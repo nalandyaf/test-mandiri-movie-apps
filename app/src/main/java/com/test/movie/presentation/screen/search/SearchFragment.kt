@@ -23,7 +23,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         super.onViewCreated(view, savedInstanceState)
 
         manageRecyclerViewAdapterLifecycle(
-            binding.rvGenres
+            binding.rvGenres,binding.rvMovies
         )
 
         setupSearchView()
@@ -40,7 +40,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
         val movieGenreIds = resources.getIntArray(R.array.movie_genre_ids).toTypedArray()
         val movieGenreNames = resources.getStringArray(R.array.movie_genre_names)
 
-       binding.rvGenres.adapter =  GenreAdapter(Detail.MOVIE).apply {
+        binding.rvGenres.adapter = GenreAdapter(Detail.MOVIE).apply {
             submitList(movieGenreIds.zip(movieGenreNames))
         }
     }
@@ -53,7 +53,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
     private fun setupSearchView() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-
+                binding.rvMovies.scrollToPosition(0)
                 if (!query.isNullOrEmpty()) viewModel.fetchInitialSearch(query)
                 return false
             }

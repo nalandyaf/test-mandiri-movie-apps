@@ -46,7 +46,7 @@
 
             <ImageView
                 errorImage="@{@drawable/ic_baseline_movie_24}"
-                imageQuality="@{ImageQuality.LOW}"
+                imageQuality="@{ImageQuality.HIGH}"
                 imageUrl="@{movie.posterPath}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
