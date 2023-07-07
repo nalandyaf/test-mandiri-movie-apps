@@ -5,7 +5,13 @@ import kotlinx.parcelize.Parcelize
 
 data class MovieReviewList(
     val results: List<MovieReview>, val totalResults: Int
-)
+) {
+    companion object {
+        val empty = MovieReviewList(
+            results = emptyList(), totalResults = 0
+        )
+    }
+}
 
 @Parcelize
 data class MovieReview(

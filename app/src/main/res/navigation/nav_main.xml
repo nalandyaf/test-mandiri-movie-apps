@@ -11,5 +11,22 @@
         android:label="SearchFragment"
         tools:layout="@layout/fragment_search" />
 
+    <fragment
+        android:id="@+id/movieDetailsFragment"
+        android:name="com.test.movie.presentation.screen.moviedetails.MovieDetailsFragment"
+        android:label="MovieDetailsFragment"
+        tools:layout="@layout/fragment_movie_details">
+        <argument
+            android:name="id"
+            app:argType="integer" />
+        <argument
+            android:name="backgroundColor"
+            app:argType="integer" />
+
+    </fragment>
+    <action
+        android:id="@+id/action_global_movieDetailsFragment"
+        app:destination="@id/movieDetailsFragment" />
+
 
 </navigation>

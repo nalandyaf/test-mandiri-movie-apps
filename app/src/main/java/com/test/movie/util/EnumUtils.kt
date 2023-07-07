@@ -49,8 +49,5 @@ enum class Content : Parcelable {
 enum class Type : Parcelable {
     MOVIE,
     REVIEW,
-    TV,
-    TV_SEASON,
-    TV_EPISODE,
     PERSON
 }

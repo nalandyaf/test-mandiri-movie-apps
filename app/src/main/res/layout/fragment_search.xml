@@ -124,7 +124,7 @@
                         style="@style/SeeAll"
                         contentType="@{Content.SEARCH}"
                         isVisible="@{viewModel.movieTotalResult > 3}"
-                        seeAllDetailType="@{Detail.MOVIE}"
+                        seeAllDetailType="@{Type.MOVIE}"
                         stringId="@{viewModel.query}"
                         title="@{@string/title_see_all_search(viewModel.query, viewModel.movieTotalResult)}" />
 

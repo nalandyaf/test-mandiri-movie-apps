@@ -24,6 +24,7 @@ import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.databinding.BindingAdapter
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.palette.graphics.Palette
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,10 +42,10 @@ import com.test.movie.R
 import com.test.movie.domain.model.*
 import com.test.movie.util.Constants
 import com.test.movie.util.Content
-import com.test.movie.util.Type
 import com.test.movie.util.ExternalPlatform
 import com.test.movie.util.ImageQuality
 import com.test.movie.util.InfiniteScrollListener
+import com.test.movie.util.Type
 import com.test.movie.util.interceptTouch
 import com.test.movie.util.setTintColor
 import jp.wasabeef.glide.transformations.CropTransformation
@@ -66,28 +67,16 @@ fun View.setHeight(height: Float) {
 }
 
 @BindingAdapter(
-    "detailType",
-    "detailId",
-    "detailImageUrl",
-    "seasonNumber",
-    "episodeNumber",
-    requireAll = false
+    "detailType", "detailId", "detailImageUrl", "seasonNumber", "episodeNumber", requireAll = false
 )
 fun View.setDetailsNavigation(
-    typeType: Type,
-    id: Int,
-    imageUrl: String?,
-    seasonNumber: Int?,
-    episodeNumber: Int?
+    type: Type, id: Int, imageUrl: String?, seasonNumber: Int?, episodeNumber: Int?
 ) {
     var backgroundColor = ContextCompat.getColor(context, R.color.day_night_inverse)
 
     imageUrl?.let {
-        Glide.with(context)
-            .asBitmap()
-            .load("https://image.tmdb.org/t/p/w92$it")
-            .priority(Priority.HIGH)
-            .into(object : CustomTarget<Bitmap>() {
+        Glide.with(context).asBitmap().load("https://image.tmdb.org/t/p/w92$it")
+            .priority(Priority.HIGH).into(object : CustomTarget<Bitmap>() {
                 override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                     Palette.from(resource).generate().dominantSwatch?.rgb?.let { color ->
                         backgroundColor = color
@@ -100,22 +89,13 @@ fun View.setDetailsNavigation(
     }
 
     setOnClickListener {
-//        val destination = when (detailType) {
-//            Detail.MOVIE -> R.id.action_global_movieDetailsFragment
-//            Detail.TV -> R.id.action_global_tvDetailsFragment
-//            Detail.TV_SEASON -> R.id.action_tvDetailsFragment_to_seasonDetailsFragment
-//            Detail.TV_EPISODE -> R.id.action_seasonDetailsFragment_to_episodeDetailsFragment
-//            Detail.PERSON -> R.id.action_global_personDetailsFragment
-//        }
-//
-//        val bundle = bundleOf(
-//            Constants.DETAIL_ID to id,
-//            Constants.BACKGROUND_COLOR to backgroundColor,
-//            Constants.SEASON_NUMBER to seasonNumber,
-//            Constants.EPISODE_NUMBER to episodeNumber
-//        )
-//
-//        findNavController().navigate(destination, bundle)
+        val bundle = bundleOf(
+            Constants.DETAIL_ID to id,
+            Constants.BACKGROUND_COLOR to backgroundColor,
+            Constants.SEASON_NUMBER to seasonNumber,
+            Constants.EPISODE_NUMBER to episodeNumber
+        )
+        findNavController().navigate(R.id.action_global_movieDetailsFragment, bundle)
     }
 }
 
@@ -176,8 +156,7 @@ fun View.setSeeAllNavigation(
 
 @BindingAdapter("android:layout_marginBottom", "isImage", requireAll = false)
 fun View.setLayoutMarginBottom(
-    isGrid: Boolean,
-    isImage: Boolean
+    isGrid: Boolean, isImage: Boolean
 ) {
     val params = layoutParams as ViewGroup.MarginLayoutParams
 
@@ -194,8 +173,7 @@ fun View.setLayoutMarginBottom(
 fun View.setBackground(color: Int) {
     setBackgroundColor(
         if (color != 0) color else ContextCompat.getColor(
-            context,
-            R.color.day_night_inverse
+            context, R.color.day_night_inverse
         )
     )
 }
@@ -222,9 +200,7 @@ fun RecyclerView.handleNestedScroll(isNested: Boolean) {
 
 @BindingAdapter("isGrid", "loadMore", "shouldLoadMore", requireAll = false)
 fun RecyclerView.addInfiniteScrollListener(
-    isGrid: Boolean,
-    infiniteScroll: InfiniteScrollListener,
-    shouldLoadMore: Boolean
+    isGrid: Boolean, infiniteScroll: InfiniteScrollListener, shouldLoadMore: Boolean
 ) {
     if (shouldLoadMore) {
         addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -281,24 +257,19 @@ fun ImageView.loadImage(
     val imageUrl =
         if (isThumbnail) "https://img.youtube.com/vi/$posterPath/0.jpg" else quality?.imageBaseUrl + posterPath
 
-    val glide = Glide.with(context)
-        .load(imageUrl)
-        .transition(DrawableTransitionOptions.withCrossFade())
-        .error(
-            errorImage ?: AppCompatResources.getDrawable(
-                context,
-                R.drawable.ic_baseline_image_24
-            )
-        )
-        .dontAnimate()
+    val glide =
+        Glide.with(context).load(imageUrl).transition(DrawableTransitionOptions.withCrossFade())
+            .error(
+                errorImage ?: AppCompatResources.getDrawable(
+                    context, R.drawable.ic_baseline_image_24
+                )
+            ).dontAnimate()
 
     if (centerCrop == true) glide.centerCrop()
     if (fitTop) glide.apply(
         RequestOptions.bitmapTransform(
             CropTransformation(
-                0,
-                1235,
-                CropTransformation.CropType.TOP
+                0, 1235, CropTransformation.CropType.TOP
             )
         )
     )
@@ -313,8 +284,7 @@ fun ImageView.setIconTint(color: Int?) {
 
 @BindingAdapter("externalPlatform", "externalId")
 fun ImageView.setExternals(
-    externalPlatform: ExternalPlatform,
-    externalId: String?
+    externalPlatform: ExternalPlatform, externalId: String?
 ) {
     val uri = (externalPlatform.url ?: "") + externalId
     val packageName = externalPlatform.packageName
@@ -323,8 +293,7 @@ fun ImageView.setExternals(
         try {
             context.startActivity(
                 Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse(uri)
+                    Intent.ACTION_VIEW, Uri.parse(uri)
                 ).setPackage(packageName)
             )
         } catch (e: ActivityNotFoundException) {
@@ -338,8 +307,7 @@ fun TextView.setRatingColor(rating: Double) {
     text = rating.toString()
     setTextColor(
         ContextCompat.getColor(
-            context,
-            when {
+            context, when {
                 rating >= 9.0 -> R.color.nine_to_ten
                 rating >= 8.0 -> R.color.eight_to_nine
                 rating >= 7.0 -> R.color.seven_to_eight
@@ -357,17 +325,10 @@ fun TextView.setRatingColor(rating: Double) {
 }
 
 @BindingAdapter(
-    "fragment",
-    "backArrowTint",
-    "toolbarTitle",
-    "toolbarTitleColor",
-    requireAll = false
+    "fragment", "backArrowTint", "toolbarTitle", "toolbarTitleColor", requireAll = false
 )
 fun Toolbar.setupToolbar(
-    fragment: Fragment,
-    backArrowTint: Int,
-    title: String?,
-    titleColor: Int?
+    fragment: Fragment, backArrowTint: Int, title: String?, titleColor: Int?
 ) {
     with(fragment.requireActivity() as AppCompatActivity) {
         setSupportActionBar(this@setupToolbar)
@@ -427,8 +388,7 @@ fun AppBarLayout.setToolbarCollapseListener(
 
 @BindingAdapter("expand", "expandIcon")
 fun ConstraintLayout.setExpandableLayout(
-    expandableLayout: ExpandableLayout,
-    expandIcon: ImageView
+    expandableLayout: ExpandableLayout, expandIcon: ImageView
 ) {
     setOnClickListener {
         expandableLayout.toggle()
