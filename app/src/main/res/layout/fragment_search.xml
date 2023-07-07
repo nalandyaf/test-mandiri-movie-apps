@@ -120,13 +120,6 @@
                         android:text="@{@string/item_count(viewModel.movieTotalResult)}"
                         app:layout_constraintStart_toEndOf="@id/textView2" />
 
-                    <TextView
-                        style="@style/SeeAll"
-                        contentType="@{Content.SEARCH}"
-                        isVisible="@{viewModel.movieTotalResult > 3}"
-                        seeAllDetailType="@{Type.MOVIE}"
-                        stringId="@{viewModel.query}"
-                        title="@{@string/title_see_all_search(viewModel.query, viewModel.movieTotalResult)}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

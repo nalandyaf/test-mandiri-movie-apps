@@ -29,19 +29,92 @@
         app:destination="@id/movieDetailsFragment" />
     <fragment
         android:id="@+id/youtubeFragment"
-        tools:layout="@layout/fragment_youtube_player"
         android:name="com.test.movie.presentation.screen.youtube.YoutubeFragment"
-        android:label="YoutubeFragment" >
+        android:label="YoutubeFragment"
+        tools:layout="@layout/fragment_youtube_player">
 
         <argument
             android:name="youtubeId"
-            app:argType="string"/>
+            app:argType="string" />
 
     </fragment>
 
     <action
         android:id="@+id/action_global_youtubeFragment"
         app:destination="@id/youtubeFragment" />
+
+    <fragment
+        android:id="@+id/seeAllFragment"
+        android:name="com.test.movie.presentation.screen.seeall.SeeAllFragment"
+        android:label="SeeAllFragment">
+        <argument
+            android:name="contentType"
+            app:argType="com.test.movie.util.Content" />
+        <argument
+            android:name="detailType"
+            android:defaultValue="@null"
+            app:argType="com.test.movie.util.Type"
+            app:nullable="true" />
+        <argument
+            android:name="genreId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="listId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="backgroundColor"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="region"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="videoList"
+            android:defaultValue="@null"
+            app:argType="com.test.movie.domain.model.Video[]"
+            app:nullable="true" />
+        <argument
+            android:name="imageList"
+            android:defaultValue="@null"
+            app:argType="com.test.movie.domain.model.Image[]"
+            app:nullable="true" />
+        <argument
+            android:name="castList"
+            android:defaultValue="@null"
+            app:argType="com.test.movie.domain.model.Person[]"
+            app:nullable="true" />
+        <argument
+            android:name="personMovieCreditsList"
+            android:defaultValue="@null"
+            app:argType="com.test.movie.domain.model.Movie[]"
+            app:nullable="true" />
+        <argument
+            android:name="personTvCreditsList"
+            android:defaultValue="@null"
+            app:argType="com.test.movie.domain.model.Tv[]"
+            app:nullable="true" />
+        <argument
+            android:name="movieRecommendationsList"
+            android:defaultValue="@null"
+            app:argType="com.test.movie.domain.model.Movie[]"
+            app:nullable="true" />
+        <argument
+            android:name="tvRecommendationsList"
+            android:defaultValue="@null"
+            app:argType="com.test.movie.domain.model.Tv[]"
+            app:nullable="true" />
+    </fragment>
+    <action
+        android:id="@+id/action_global_seeAllFragment"
+        app:destination="@id/seeAllFragment" />
 
 
 </navigation>

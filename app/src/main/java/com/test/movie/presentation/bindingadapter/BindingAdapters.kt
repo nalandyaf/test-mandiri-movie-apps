@@ -150,7 +150,7 @@ fun View.setSeeAllNavigation(
             Constants.TV_RECOMMENDATIONS_LIST to tvRecommendationsList?.toTypedArray()
         )
 
-//        findNavController().navigate(R.id.action_global_seeAllFragment, bundle)
+        findNavController().navigate(R.id.action_global_seeAllFragment, bundle)
     }
 }
 
